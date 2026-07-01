@@ -1,6 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -12,8 +13,7 @@ export class AuthService {
     async validateUser(username: string, pass: string) {
         const user = await this.usersService.findOne(username);
 
-        // 우선 비밀번호를 단순 비교로 처리 (실제 환경에서는 해시 비교 필요)
-        if (user && user.password === pass) {
+        if (user && (await bcrypt.compare(pass, user.password))) {
             const { password, ...result} = user;
             return result;
         }

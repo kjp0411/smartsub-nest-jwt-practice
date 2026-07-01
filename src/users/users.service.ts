@@ -13,7 +13,7 @@ export class UsersService {
         {
             userId: 1,
             username: 'kjp0411',
-            password: '$2b$10$examplehashedpassword',
+            password: '$2b$10$oIXGDsTG2AKpamTKlw5lYeE3XC5GCqkAJrkWr0I0YOXznOIb03zz6',
         },
     ];
 
